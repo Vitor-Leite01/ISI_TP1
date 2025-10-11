@@ -63,18 +63,7 @@ O fluxo criado no Pentaho realiza as seguintes etapas:
      - `Estatisticas_F1_2016_2024.xlsx`
      - `Estatisticas_F1_2016_2024.txt`
      - `Estatisticas_F1_2016_2024.json`
-   - (Opcional) Envio por **e-mail automático** através do passo “Mail”.
-
----
-
-## 📬 Envio por E-mail (Opcional)
-
-O fluxo inclui um passo final “Mail” que envia o ficheiro Excel para um destinatário configurado.  
-Basta preencher no Pentaho:
-- **Destination address:** endereço do destinatário  
-- **Sender address:** e-mail de envio  
-- **SMTP server:** servidor de envio (ex: `smtp.gmail.com`)  
-- **Attached Files:** caminho para `C:\F1_ETL\output\Estatisticas_F1_2016_2024.xlsx`
+   
 
 ---
 
@@ -115,9 +104,8 @@ O processo produz estatísticas por piloto, incluindo:
 ## 👨‍💻 Autor
 
 **Vítor Leite**  
-💼 Instituto Superior de Engenharia  
+💼 IPCA 
 📅 Ano letivo 2025/2026  
-📧 (coloca aqui o teu e-mail académico, se quiseres)
 
 ---
 
