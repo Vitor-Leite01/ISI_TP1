@@ -498,31 +498,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Join_Results_Races_Drivers_Constructors</from>
-      <to>Cleaning</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter_2016_2024</from>
-      <to>Group by</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group by</from>
-      <to>Order_By_TotalPoints</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Cleaning</from>
-      <to>CleanName</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>CleanName</from>
-      <to>Filter_2016_2024</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Order_By_TotalPoints</from>
       <to>Microsoft Excel writer</to>
       <enabled>Y</enabled>
@@ -535,6 +510,31 @@
     <hop>
       <from>Order_By_TotalPoints</from>
       <to>Estatisticas_2016_2024.json</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Join_Results_Races_Drivers_Constructors</from>
+      <to>CleanName</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>CleanName</from>
+      <to>Filter_2016_2024</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter_2016_2024</from>
+      <to>Cleaning</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Cleaning</from>
+      <to>Group by</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by</from>
+      <to>Order_By_TotalPoints</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -557,14 +557,14 @@
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>//Script here
 
-// Cria o nome completo
-var FullName = Name + " " + surname;
+// Cria o nome completo:
+var FullName = forename + " " + surname;
 
 // Remove tudo o que não sejam letras (incluindo acentos) ou espaços
-FullName = FullName.replace(/[^A-Za-zÀ-ÿ\s]/g, "");
+FullName = FullName.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
 
 // Substitui múltiplos espaços por apenas um e remove espaços no início/fim
-FullName = FullName.replace(/\s+/g, " ").trim();
+FullName = FullName.replace(/\s+/g, ' ').trim();
 
 // Guarda no novo campo de saída
 var Clean_FullName = FullName;
@@ -573,7 +573,7 @@ var Clean_FullName = FullName;
     </jsScripts>
     <fields>
       <field>
-        <name>FullName</name>
+        <name>Clean_FullName</name>
         <rename>FullName</rename>
         <type>String</type>
         <length>-1</length>
@@ -590,7 +590,7 @@ var Clean_FullName = FullName;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
+      <xloc>1504</xloc>
       <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
@@ -608,14 +608,10 @@ var Clean_FullName = FullName;
     </partitioning>
     <fields>
       <field>
-        <name>forename</name>
-        <rename>Name</rename>
+        <name>driverId</name>
       </field>
       <field>
-        <name>Surname</name>
-      </field>
-      <field>
-        <name>Nationality</name>
+        <name>FullName</name>
       </field>
       <field>
         <name>number_1</name>
@@ -630,33 +626,7 @@ var Clean_FullName = FullName;
       <field>
         <name>positionOrder</name>
       </field>
-      <field>
-        <name>Year</name>
-      </field>
-      <field>
-        <name>raceId</name>
-      </field>
-      <field>
-        <name>driverId</name>
-      </field>
       <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>Year</name>
-        <rename>Year</rename>
-        <type>Integer</type>
-        <length>4</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -667,7 +637,7 @@ var Clean_FullName = FullName;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1504</xloc>
+      <xloc>976</xloc>
       <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
@@ -977,7 +947,7 @@ var Clean_FullName = FullName;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
+      <xloc>240</xloc>
       <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1118,8 +1088,8 @@ var Clean_FullName = FullName;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>656</yloc>
+      <xloc>240</xloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1134,7 +1104,7 @@ var Clean_FullName = FullName;
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Group by</send_true_to>
+    <send_true_to>Cleaning</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -1183,7 +1153,7 @@ var Clean_FullName = FullName;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
+      <xloc>1232</xloc>
       <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1227,8 +1197,8 @@ var Clean_FullName = FullName;
       </field>
       <field>
         <aggregate>Total Races</aggregate>
-        <subject>raceId</subject>
-        <type>COUNT_ALL</type>
+        <subject/>
+        <type>COUNT_ANY</type>
         <valuefield/>
       </field>
       <field>
@@ -1513,8 +1483,8 @@ var Clean_FullName = FullName;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>544</yloc>
+      <xloc>240</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1555,7 +1525,7 @@ var Clean_FullName = FullName;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
+      <xloc>480</xloc>
       <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
